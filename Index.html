@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>💌 A Surprise for Reddy Sai 🤍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #d5dee7, #eecda3);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+      padding-top: 40px;
+      animation: fadeIn 1.5s ease;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    p.subtitle {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      color: #ffffffcc;
+    }
+
+    #countdown {
+      font-size: 1.2rem;
+      margin: 10px 0 20px;
+    }
+
+    input {
+      padding: 12px;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      width: 80%;
+      max-width: 300px;
+      font-size: 1rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      outline: none;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+
+    input::placeholder {
+      color: #eee;
+    }
+
+    input:focus {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 12px rgba(255,255,255,0.4);
+    }
+
+    input.error-highlight {
+      border-color: #ff4b2b;
+      box-shadow: 0 0 15px #ff4b2b;
+      background: rgba(255, 75, 43, 0.1);
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0px); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0px); }
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: #fff9;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .error {
+      color: #ffeb3b;
+      font-weight: bold;
+      font-size: 0.95rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #page2 {
+      display: none;
+      margin-top: 40px;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    #loveTimer {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    #typingText {
+      font-size: 1.3rem;
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 2rem; }
+      #typingText { font-size: 1.1rem; }
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.8) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="page1">
+    <h1>🎉 Advance Happy Birthday Reddy Sai 🎂💐</h1>
+    <p class="subtitle">Someone’s waiting to tell you something special ✨</p>
+    <div id="countdown">Loading countdown...</div>
+    <input type="password" id="secretCode" placeholder="Enter Secret Code">
+    <div class="hint">Hint: The day everything changed 💭</div>
+    <button onclick="checkCode()">Unlock the Magic 💫</button>
+    <div class="error" id="errorMsg">🤔 Em Gurthu unntadhi le secret code 😅</div>
+  </div>
+
+  <div class="container" id="page2">
+    <h1>💌 From the Stars to You</h1>
+    <div id="loveTimer"></div>
+    <div id="typingText"></div>
+  </div>
+
+  <script>
+    const countdownEl = document.getElementById("countdown");
+    const birthday = new Date("2025-06-25T00:00:00");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = birthday - now;
+      if (diff <= 0) {
+        countdownEl.innerText = "🎂 It's Your Birthday, Reddy Sai!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      countdownEl.innerText = `⏳ Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function checkCode() {
+      const inputBox = document.getElementById("secretCode");
+      const errorBox = document.getElementById("errorMsg");
+      const input = inputBox.value.trim();
+
+      if (input === "252143") {
+        document.getElementById("page1").style.display = "none";
+        document.getElementById("page2").style.display = "block";
+        startLoveTimer();
+        typeText();
+      } else {
+        errorBox.style.display = "block";
+        inputBox.classList.add("error-highlight");
+        setTimeout(() => inputBox.classList.remove("error-highlight"), 800);
+      }
+    }
+
+    function startLoveTimer() {
+      const loveStartedAt = new Date("2020-06-10T20:00:00");
+      setInterval(() => {
+        const now = new Date();
+        const months = (now.getFullYear() - loveStartedAt.getFullYear()) * 12 + now.getMonth() - loveStartedAt.getMonth();
+        const days = Math.floor((now - loveStartedAt) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((now - loveStartedAt) / (1000 * 60 * 60)) % 24;
+        const minutes = Math.floor((now - loveStartedAt) / (1000 * 60)) % 60;
+        const seconds = Math.floor((now - loveStartedAt) / 1000) % 60;
+        document.getElementById("loveTimer").innerHTML = 
+        `❤️ We've been connected since SSC...<br><strong>${months} months, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds</strong><br>...and my love only grows 🌹`;
+      }, 1000);
+    }
+
+    const fullMsg = `Hey Reddy Sai 🤍\n\nI know it’s been a long time — a whole year of silence.\nMaybe you moved on... maybe we both did.\nBut today, your birthday gave me one reason I couldn’t ignore.\n\n🎉 Happy Birthday 💫\n\nI hope this day brings you all the joy, peace, and love you deserve.\nAnd even if I’m no longer part of your story, just know someone silently smiled today… remembering you.\n\nTake care, always 🌸`;
+    let i = 0;
+    function typeText() {
+      if (i < fullMsg.length) {
+        document.getElementById("typingText").innerText += fullMsg.charAt(i);
+        i++;
+        setTimeout(typeText, 40);
+      }
+    }
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 400);
+  </script>
+</body>
+</html>
